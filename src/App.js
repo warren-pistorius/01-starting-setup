@@ -1,10 +1,10 @@
-import ExpenseItem from "./components/ExpenseItem";
+import Expenses from "./components/Expenses";
 
 function App() {
 
   const expenses = [
     {
-      id: 'e1',
+      id: 'e1 d',
       title: 'Toilet Paper',
       amount: 94.12,
       date: new Date(2020, 7, 14),
@@ -25,15 +25,9 @@ function App() {
   ];
 
   return (
-    <div>
-      <h2>Let's get started!</h2>
-      {
-        //expenses.forEach(expense => {
-          <ExpenseItem date={expenses[0].date} title={expenses[0].title} amount={expenses[0].amount}></ExpenseItem>
-        //})
-      }
-      
-    </div>
+    
+    <Expenses items={expenses}></Expenses>
+    
   );
 }
 
