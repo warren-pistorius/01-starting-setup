@@ -11,7 +11,7 @@ const ExpenseForm = (props) => {
     setEnteredTitle(event.target.value);
   };
 
-  const setNumberHandler = (event) => {
+  const setAmountHandler = (event) => {
     setEnteredAmount(event.target.value);
   };
 
@@ -24,7 +24,7 @@ const ExpenseForm = (props) => {
 
     const expenseData = {
       title: enteredTitle,
-      number: enteredAmount,
+      amount: enteredAmount,
       date: new Date(enteredDate),
     };
 
@@ -53,7 +53,7 @@ const ExpenseForm = (props) => {
             type="number"
             min="0.01"
             step="0.01"
-            onChange={setNumberHandler}
+            onChange={setAmountHandler}
             value={enteredAmount}
           />
         </div>
