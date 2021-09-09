@@ -1,15 +1,21 @@
 import React, { useState } from "react";
 import "./NewExpense.css";
 import ExpenseForm from "./ExpenseForm";
+import { LogTimeDifference } from "../Utils/Utils";
 
-const NewExpense = () => {
-  const saveExpenseDataHandler = (enteredEexpenseData) => {
+const NewExpense = (props) => {
+  const saveExpenseDataHandler = (enteredExpenseData) => {
+    
+    let startDateTime = new Date();
+    
     const expenseData = {
-      ...enteredEexpenseData,
+      ...enteredExpenseData,
       id: Math.random().toString(),
     };
 
-    console.log(expenseData);
+    props.onAddExpense(expenseData);
+
+    LogTimeDifference("Test", startDateTime, new Date());
   };
 
   return (
