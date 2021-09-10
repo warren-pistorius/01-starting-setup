@@ -1,6 +1,6 @@
-
 import { useState } from "react";
 import Expenses from "./components/Expenses/Expenses";
+import AddNewExpense from "./components/NewExpense/AddNewExpense";
 import NewExpense from "./components/NewExpense/NewExpense";
 
 const DUMMY_EXPENSES = [
@@ -26,21 +26,33 @@ const DUMMY_EXPENSES = [
 ];
 
 function App() {
-  
   const [expenses, setExpenses] = useState(DUMMY_EXPENSES);
-  
+  const [showExpenseFormValue, setShowExpenseFormValue] = useState(false);
+
+  const showExpenseFormHandler = () => {
+    setShowExpenseFormValue(true);
+  };
+
+  const hideExpenseFormHandler = () => {
+    setShowExpenseFormValue(false);
+  };
+
   const addExpenseHandler = (expense) => {
-    console.log('In app component')
+    console.log("In app component");
     console.log(expense);
 
-    setExpenses(prevExpenses => {
+    setExpenses((prevExpenses) => {
       return [expense, ...prevExpenses];
     });
   };
 
   return (
     <div>
-      <NewExpense onAddExpense={addExpenseHandler} />
+      {showExpenseFormValue ? (
+        <NewExpense onAddExpense={addExpenseHandler} onCancelEditing={hideExpenseFormHandler} />
+      ) : (
+        <AddNewExpense onAddNewExpense={showExpenseFormHandler} />
+      )}
       <Expenses items={expenses}></Expenses>
     </div>
   );

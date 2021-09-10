@@ -19,6 +19,10 @@ const ExpenseForm = (props) => {
     setEnteredDate(event.target.value);
   };
 
+  const cancelEditing = () =>{
+    props.onCancelEditing(true);
+  }
+
   const submitHandler = (event) => {
     event.preventDefault(); //Prevent default form behavior
 
@@ -28,15 +32,18 @@ const ExpenseForm = (props) => {
       date: new Date(enteredDate),
     };
 
-    //console.log(expenseData);
     props.onSaveExpenseData(expenseData);
     
     setEnteredTitle("");
     setEnteredAmount("");
     setEnteredDate("");
+
+    cancelEditing(true);
   };
 
   return (
+
+    
     <form onSubmit={submitHandler}>
       <div className="new-expense__controls">
         <div className="new-expense__control">
@@ -69,6 +76,7 @@ const ExpenseForm = (props) => {
         </div>
       </div>
       <div className="new-expense__actions">
+        <button type="button" onClick={cancelEditing}>Cancel</button>
         <button type="submit">Add Expense</button>
       </div>
     </form>
